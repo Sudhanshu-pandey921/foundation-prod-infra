@@ -1,0 +1,20 @@
+trigger: 
+  branches:
+    include:
+      - feature
+    exclude:
+      - hotfix
+
+pr:
+ branches:
+   include:
+     - main
+
+schedules:
+  - cron: "13 6 * * * "
+    displayName: morning 6 am
+    branches:
+      include:
+        - main
+    always: False
+  
