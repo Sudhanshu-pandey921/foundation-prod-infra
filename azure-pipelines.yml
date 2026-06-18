@@ -28,6 +28,30 @@ stages:
               backendAzureRmStorageAccountName: 'backendstg921'
               backendAzureRmContainerName: 'backendcnt921'
               backendAzureRmKey: 'prod.tfstate'
+
+  - stage: ThirdStage
+    displayName: TerraformPlan
+    jobs:
+      - job: Plan
+        steps:
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: 'D:\Agent\vsts-agent-win-x64-4.274.1\_work'
+              backendServiceArm: 'prod-sc'
+              backendAzureRmStorageAccountName: 'backendstg921'
+              backendAzureRmContainerName: 'backendcnt921'
+              backendAzureRmKey: 'prod.tfstate'
+
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              workingDirectory: 'D:\Agent\vsts-agent-win-x64-4.274.1\_work'
+              commandOptions: '-var-file="environment/dev/terraform.tfvars"'
+              environmentServiceNameAzureRM: 'prod-sc'
+          
     
           
             
