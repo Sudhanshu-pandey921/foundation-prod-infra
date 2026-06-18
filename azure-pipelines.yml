@@ -39,6 +39,7 @@ stages:
               provider: 'azurerm'
               command: 'init'
               workingDirectory: 'D:\Agent\vsts-agent-win-x64-4.274.1\_work'
+              commandOptions: '-reconfigure'
               backendServiceArm: 'prod-sc'
               backendAzureRmStorageAccountName: 'backendstg921'
               backendAzureRmContainerName: 'backendcnt921'
@@ -49,6 +50,7 @@ stages:
               provider: 'azurerm'
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+              commandOptions: '-var-file="environment/dev/terraform.tfvars"'
               environmentServiceNameAzureRM: 'prod-sc'
           
             
