@@ -1,20 +1,18 @@
-trigger: 
-  branches:
-    include:
-      - feature
-    exclude:
-      - hotfix
+trigger:
+  - none
 
-pr:
- branches:
-   include:
-     - main
+pool: prod-pool
 
-schedules:
-  - cron: "13 6 * * * "
-    displayName: morning 6 am
-    branches:
-      include:
-        - main
-    always: False
-  
+stages:
+  - stage: FirstStage
+    displayName: TerraformInstall
+
+    jobs:
+      - job: InstallTerraform
+        steps:
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: 'latest'
+    
+          
+            
