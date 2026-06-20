@@ -24,10 +24,10 @@ stages:
               provider: 'azurerm'
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)\Terraform'
-              backendServiceArm: 'prod-sc'
-              backendAzureRmStorageAccountName: 'backendstg921'
-              backendAzureRmContainerName: 'backendcnt921'
-              backendAzureRmKey: 'prod.tfstate'
+              backendServiceArm: 'sid-sc'
+              backendAzureRmStorageAccountName: 'sidstg1'
+              backendAzureRmContainerName: 'sidcnt1'
+              backendAzureRmKey: 'prac.tfstate'
 
   - stage: ThirdStage
     displayName: TerraformPlan
@@ -40,10 +40,10 @@ stages:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)\Terraform'
               commandOptions: '-reconfigure'
-              backendServiceArm: 'prod-sc'
-              backendAzureRmStorageAccountName: 'backendstg921'
-              backendAzureRmContainerName: 'backendcnt921'
-              backendAzureRmKey: 'prod.tfstate'
+              backendServiceArm: 'sid-sc'
+              backendAzureRmStorageAccountName: 'sidstg1'
+              backendAzureRmContainerName: 'sidcnt1'
+              backendAzureRmKey: 'prac.tfstate'
 
           - task: TerraformTask@5
             inputs:
@@ -51,6 +51,6 @@ stages:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)\Terraform'
               commandOptions: '-var-file="environment "$(System.DefaultWorkingDirectory)\Terraform/dev/terraform.tfvars"'
-              environmentServiceNameAzureRM: 'prod-sc'
+              environmentServiceNameAzureRM: 'sid-sc'
           
             
